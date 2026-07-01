@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Aasa</title>
+    <title>For my pretty wifey</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
         
         body {
-            font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive, sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -53,60 +53,67 @@
         }
         
         .question-text {
-            font-size: 1.9rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #1a1a1a;
             margin: 10px 0 20px;
             letter-spacing: -0.3px;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
         }
         
         .btn-group {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
             flex-wrap: wrap;
             margin-top: 4px;
-            min-height: 70px;
+            min-height: 80px;
             position: relative;
+            width: 100%;
         }
         
         .btn-yes {
             background: #1a1a1a;
             color: white;
             border: none;
-            padding: 13px 28px;
+            padding: 14px 32px;
             border-radius: 50px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 3px 15px rgba(0,0,0,0.06);
             z-index: 5;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+            position: relative;
+            flex-shrink: 0;
         }
+
         
         .btn-yes:hover {
             background: #2d2d2d;
             transform: scale(1.04);
         }
-
         
         .btn-no {
             background: #f0e2e2;
             color: #3d2222;
             border: 1.5px solid #e6d0d0;
-            padding: 13px 24px;
+            padding: 14px 28px;
             border-radius: 50px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             white-space: nowrap;
             box-shadow: 0 3px 15px rgba(200,150,150,0.06);
             position: absolute;
             z-index: 10;
-            transition: left 0.3s cubic-bezier(0.34, 1.4, 0.64, 1), 
-                        top 0.3s cubic-bezier(0.34, 1.4, 0.64, 1),
-                        transform 0.2s ease;
+            flex-shrink: 0;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+            transition: left 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        top 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        transform 0.15s ease;
         }
         
         .scene-after {
@@ -128,6 +135,7 @@
             width: 100%;
             max-width: 200px;
             border-radius: 28px;
+
             margin: 0 auto 12px;
             display: block;
             border: 2px solid #f0e8e8;
@@ -135,7 +143,6 @@
         
         .letter-box {
             text-align: left;
-
             background: #fcf8f8;
             padding: 28px 24px;
             border-radius: 30px;
@@ -168,33 +175,32 @@
         }
         
         .letter-text {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            font-size: 0.92rem;
-            line-height: 1.9;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;
+            font-size: 0.95rem;
+            line-height: 2;
             color: #1a1a1a;
             white-space: pre-wrap;
-            font-style: italic;
             position: relative;
+
             z-index: 1;
         }
         
         .letter-text .big {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-
-            font-style: normal;
             display: block;
             margin-bottom: 6px;
             color: #2d1b1b;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
         }
         
         .letter-text .sign {
-            font-style: normal;
             font-weight: 600;
             color: #2d1b1b;
             display: block;
             text-align: right;
             margin-top: 12px;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
         }
         
         .floating-hearts {
@@ -221,33 +227,37 @@
                 opacity: 1;
             }
             100% {
+
                 transform: translateY(-10vh) scale(1.1) rotate(15deg);
                 opacity: 0;
             }
         }
         
         @media (max-width: 480px) {
-
             .card {
                 padding: 24px 16px 30px;
                 border-radius: 32px;
             }
             .question-text {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             .btn-yes, .btn-no {
-                padding: 11px 18px;
-                font-size: 0.85rem;
+                padding: 12px 20px;
+                font-size: 0.9rem;
             }
             .dog-sad, .dog-happy {
                 max-width: 160px;
             }
             .letter-text {
-                font-size: 0.85rem;
-                line-height: 1.8;
+                font-size: 0.88rem;
+                line-height: 1.9;
             }
             .letter-box {
                 padding: 20px 16px;
+            }
+            .btn-group {
+                min-height: 70px;
+                gap: 12px;
             }
         }
     </style>
@@ -262,6 +272,7 @@
         <div class="btn-group" id="btnGroup">
             <button class="btn-yes" id="yesBtn">Yes, I forgive you</button>
             <button class="btn-no" id="noBtn">No, I won't forgive you!</button>
+
         </div>
     </div>
 
@@ -304,9 +315,11 @@
     var sceneAfter = document.getElementById('sceneAfter');
     var yesBtn = document.getElementById('yesBtn');
     var noBtn = document.getElementById('noBtn');
+
     var btnGroup = document.getElementById('btnGroup');
     var heartContainer = document.getElementById('heartContainer');
     var moveTimeout = null;
+    var moveInterval = null;
 
     function moveNoButton() {
         var groupRect = btnGroup.getBoundingClientRect();
@@ -314,23 +327,29 @@
         
         var padding = 10;
         var maxX = groupRect.width - btnRect.width - padding;
-
         var maxY = groupRect.height - btnRect.height - padding;
         
-        if (maxX < 20) maxX = 40;
-        if (maxY < 20) maxY = 40;
+        if (maxX < 20) maxX = 30;
+        if (maxY < 20) maxY = 30;
         
         var newX = Math.random() * maxX;
         var newY = Math.random() * maxY;
         
         noBtn.style.left = newX + 'px';
         noBtn.style.top = newY + 'px';
-        noBtn.style.transform = 'scale(0.85) rotate(-3deg)';
+        noBtn.style.transform = 'scale(0.8) rotate(-5deg)';
         
         clearTimeout(moveTimeout);
         moveTimeout = setTimeout(function() {
             noBtn.style.transform = 'scale(1) rotate(0deg)';
-        }, 300);
+        }, 200);
+    }
+
+    function resetNoButtonPosition() {
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = '0px';
+        noBtn.style.top = '0px';
+        noBtn.style.transform = 'scale(1) rotate(0deg)';
     }
 
     noBtn.addEventListener('mouseover', function(e) {
@@ -342,11 +361,12 @@
         var btnRect = noBtn.getBoundingClientRect();
         var mouseX = e.clientX;
         var mouseY = e.clientY;
+
         var centerX = btnRect.left + btnRect.width / 2;
         var centerY = btnRect.top + btnRect.height / 2;
         var dist = Math.sqrt((mouseX - centerX) * (mouseX - centerX) + (mouseY - centerY) * (mouseY - centerY));
         
-        if (dist < 80) {
+        if (dist < 100) {
             moveNoButton();
         }
     });
@@ -359,7 +379,6 @@
     noBtn.addEventListener('click', function(e) {
         e.preventDefault();
         moveNoButton();
-
     });
 
     yesBtn.addEventListener('click', function() {
@@ -374,6 +393,10 @@
         setTimeout(function() {
             card.style.transform = 'scale(1)';
         }, 400);
+        
+        if (moveInterval) {
+            clearInterval(moveInterval);
+        }
     });
 
     function launchHearts() {
@@ -383,6 +406,7 @@
                 var heart = document.createElement('div');
                 heart.className = 'heart-emoji';
                 heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
                 heart.style.left = Math.random() * 100 + '%';
                 heart.style.fontSize = (1.5 + Math.random() * 3) + 'rem';
                 heart.style.animationDuration = (2.8 + Math.random() * 2.2) + 's';
@@ -398,18 +422,17 @@
     window.addEventListener('load', function() {
         sceneAfter.style.display = 'none';
         
-        noBtn.style.position = 'absolute';
-        noBtn.style.left = '0px';
-        noBtn.style.top = '0px';
+        resetNoButtonPosition();
         
-        setTimeout(moveNoButton, 500);
+        setTimeout(function() {
+            moveNoButton();
+        }, 300);
         
-        setInterval(function() {
-
+        moveInterval = setInterval(function() {
             if (sceneBefore.style.display !== 'none') {
                 moveNoButton();
             }
-        }, 2200);
+        }, 1500);
     });
 </script>
 
