@@ -66,7 +66,7 @@
             justify-content: center;
             align-items: center;
             gap: 16px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             margin-top: 4px;
             min-height: 80px;
             position: relative;
@@ -107,13 +107,14 @@
             cursor: pointer;
             white-space: nowrap;
             box-shadow: 0 3px 15px rgba(200,150,150,0.06);
-            position: absolute;
-            z-index: 10;
-            flex-shrink: 0;
             font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
-            transition: left 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                        top 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        transform 0.15s ease;
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .btn-no:hover {
+            transform: scale(0.95) rotate(-3deg);
         }
         
         .scene-after {
@@ -134,8 +135,8 @@
         .dog-happy {
             width: 100%;
             max-width: 200px;
-            border-radius: 28px;
 
+            border-radius: 28px;
             margin: 0 auto 12px;
             display: block;
             border: 2px solid #f0e8e8;
@@ -180,8 +181,8 @@
             line-height: 2;
             color: #1a1a1a;
             white-space: pre-wrap;
-            position: relative;
 
+            position: relative;
             z-index: 1;
         }
         
@@ -226,8 +227,8 @@
                 transform: translateY(100vh) scale(0.2) rotate(0deg);
                 opacity: 1;
             }
-            100% {
 
+            100% {
                 transform: translateY(-10vh) scale(1.1) rotate(15deg);
                 opacity: 0;
             }
@@ -242,8 +243,8 @@
                 font-size: 1.6rem;
             }
             .btn-yes, .btn-no {
-                padding: 12px 20px;
-                font-size: 0.9rem;
+                padding: 12px 18px;
+                font-size: 0.85rem;
             }
             .dog-sad, .dog-happy {
                 max-width: 160px;
@@ -256,8 +257,8 @@
                 padding: 20px 16px;
             }
             .btn-group {
-                min-height: 70px;
-                gap: 12px;
+                gap: 10px;
+                min-height: 65px;
             }
         }
     </style>
@@ -271,8 +272,8 @@
         <div class="question-text">Will you forgive me?</div>
         <div class="btn-group" id="btnGroup">
             <button class="btn-yes" id="yesBtn">Yes, I forgive you</button>
-            <button class="btn-no" id="noBtn">No, I won't forgive you!</button>
 
+            <button class="btn-no" id="noBtn">No, I won't forgive you!</button>
         </div>
     </div>
 
@@ -284,7 +285,7 @@
 
                 YOU ACTUALLY FORGAVE ME?!
 
-                Hehehe... I knew my adorable little black cat had a soft spot for me.
+                Hehehe... I knew my adorable little black cat had a soft spot for me. 
 
                 Come here, you. You don't get to click "I forgive you" and then run away.
                 That's illegal. Your punishment is accepting approximately 7,483 forehead kisses, unlimited cuddles, and me being even more obsessed with you
@@ -300,7 +301,7 @@
 
                 I've got a little black cat to adore, an unreasonable amount of love to give, and no interest in spending it on anyone but you.
 
-                Yeah. It's always been you.
+                Yeah. It's always been you. 
 
                 <span class="sign">- Your Golden Retriever</span>
             </div>
@@ -314,14 +315,18 @@
     var sceneBefore = document.getElementById('sceneBefore');
     var sceneAfter = document.getElementById('sceneAfter');
     var yesBtn = document.getElementById('yesBtn');
-    var noBtn = document.getElementById('noBtn');
 
+    var noBtn = document.getElementById('noBtn');
     var btnGroup = document.getElementById('btnGroup');
     var heartContainer = document.getElementById('heartContainer');
     var moveTimeout = null;
     var moveInterval = null;
+    var isMoving = false;
 
     function moveNoButton() {
+        if (isMoving) return;
+        isMoving = true;
+        
         var groupRect = btnGroup.getBoundingClientRect();
         var btnRect = noBtn.getBoundingClientRect();
         
@@ -335,6 +340,7 @@
         var newX = Math.random() * maxX;
         var newY = Math.random() * maxY;
         
+        noBtn.style.position = 'absolute';
         noBtn.style.left = newX + 'px';
         noBtn.style.top = newY + 'px';
         noBtn.style.transform = 'scale(0.8) rotate(-5deg)';
@@ -342,17 +348,20 @@
         clearTimeout(moveTimeout);
         moveTimeout = setTimeout(function() {
             noBtn.style.transform = 'scale(1) rotate(0deg)';
+            isMoving = false;
         }, 200);
     }
 
     function resetNoButtonPosition() {
-        noBtn.style.position = 'absolute';
-        noBtn.style.left = '0px';
-        noBtn.style.top = '0px';
+        noBtn.style.position = 'relative';
+        noBtn.style.left = 'auto';
+        noBtn.style.top = 'auto';
         noBtn.style.transform = 'scale(1) rotate(0deg)';
+        isMoving = false;
     }
 
     noBtn.addEventListener('mouseover', function(e) {
+
         e.stopPropagation();
         moveNoButton();
     });
@@ -361,7 +370,6 @@
         var btnRect = noBtn.getBoundingClientRect();
         var mouseX = e.clientX;
         var mouseY = e.clientY;
-
         var centerX = btnRect.left + btnRect.width / 2;
         var centerY = btnRect.top + btnRect.height / 2;
         var dist = Math.sqrt((mouseX - centerX) * (mouseX - centerX) + (mouseY - centerY) * (mouseY - centerY));
@@ -397,42 +405,45 @@
         if (moveInterval) {
             clearInterval(moveInterval);
         }
+        
+
+        resetNoButtonPosition();
     });
 
     function launchHearts() {
-        var emojis = ['😘', '💗', '💖', '💕', '❤️', '😍', '🥰', '💋', '✨', '🌸', '💝'];
-        for (var i = 0; i < 80; i++) {
+        var emojis = ['💋', '❤️'];
+        for (var i = 0; i < 100; i++) {
             setTimeout(function(index) {
                 var heart = document.createElement('div');
                 heart.className = 'heart-emoji';
                 heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-
                 heart.style.left = Math.random() * 100 + '%';
-                heart.style.fontSize = (1.5 + Math.random() * 3) + 'rem';
-                heart.style.animationDuration = (2.8 + Math.random() * 2.2) + 's';
-                heart.style.animationDelay = (Math.random() * 0.4) + 's';
+                heart.style.fontSize = (1.8 + Math.random() * 3) + 'rem';
+                heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+                heart.style.animationDelay = (Math.random() * 0.3) + 's';
                 heartContainer.appendChild(heart);
                 setTimeout(function() {
                     heart.remove();
                 }, 5500);
-            }, i * 45, i);
+            }, i * 35, i);
         }
     }
 
     window.addEventListener('load', function() {
         sceneAfter.style.display = 'none';
-        
         resetNoButtonPosition();
         
         setTimeout(function() {
-            moveNoButton();
-        }, 300);
+            if (sceneBefore.style.display !== 'none') {
+                moveNoButton();
+            }
+        }, 500);
         
         moveInterval = setInterval(function() {
             if (sceneBefore.style.display !== 'none') {
                 moveNoButton();
             }
-        }, 1500);
+        }, 1800);
     });
 </script>
 
