@@ -10,32 +10,32 @@
 body {
   margin: 0;
   font-family: 'Comic Neue', cursive;
-  background: linear-gradient(135deg, #ffffff, #f2f2f2);
+  background: linear-gradient(135deg, #fff, #f2f2f2);
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   overflow: hidden;
-  text-align: center;
 }
 
-.container {
+.screen {
+  text-align: center;
   max-width: 600px;
 }
-
-h1 { font-size: 28px; }
-
-.dog { font-size: 80px; }
 
 button {
   padding: 12px 18px;
   margin: 10px;
-  border-radius: 12px;
   border: none;
+  border-radius: 12px;
   cursor: pointer;
+  font-size: 16px;
 }
 
-#yes { background: black; color: white; }
+#yes {
+  background: black;
+  color: white;
+}
 
 #no {
   background: #eee;
@@ -44,6 +44,7 @@ button {
 
 .heart, .kiss {
   position: absolute;
+  font-size: 20px;
 }
 
 .heart { color: hotpink; animation: float 4s linear forwards; }
@@ -63,45 +64,40 @@ button {
 
 <body>
 
-<div class="container" id="main">
-  <div class="dog" id="dog">🐶😭</div>
-  <h1>Will you forgive me?</h1>
+<div class="screen" id="screen">
+  <h1>🐶 Will you forgive me?</h1>
 
   <button id="yes">Yes 💖</button>
   <button id="no">No 😡</button>
 </div>
 
 <script>
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-  const noBtn = document.getElementById("no");
-  const yesBtn = document.getElementById("yes");
-  const dog = document.getElementById("dog");
+  const yes = document.getElementById("yes");
+  const no = document.getElementById("no");
+  const screen = document.getElementById("screen");
 
   // No runaway
-  noBtn.addEventListener("mouseover", () => {
-    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
-    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+  no.addEventListener("mouseover", () => {
+    no.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    no.style.top = Math.random() * (window.innerHeight - 50) + "px";
   });
 
-  // YES click
-  yesBtn.addEventListener("click", () => {
+  // YES
+  yes.addEventListener("click", () => {
 
-    document.getElementById("main").innerHTML = 
-      <h1>💖 Thank you 💖</h1>
-      <p style="max-width:600px; margin:auto; line-height:1.8;">
+    screen.innerHTML = 
+      <h1>💖 You forgave me 💖</h1>
+      <p style="max-width:500px; margin:auto; line-height:1.8;">
         ...Wait.<br><br>
-
-        YOU ACTUALLY FORGAVE ME?!<br><br>
-
-        Hehehe... I knew you'd soften 😼<br><br>
-
+        YOU ACTUALLY DID IT?! 😼<br><br>
         You're my favorite person ♡
       </p>
     ;
 
-    setInterval(createHeart, 300);
-    setInterval(createKiss, 200);
+    setInterval(createHeart, 250);
+    setInterval(createKiss, 180);
   });
 
   function createHeart() {
@@ -124,7 +120,7 @@ window.onload = () => {
     setTimeout(() => k.remove(), 3000);
   }
 
-};
+});
 </script>
 
 </body>
