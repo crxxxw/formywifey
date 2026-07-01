@@ -26,7 +26,6 @@
             max-width: 460px;
             width: 100%;
             padding: 38px 30px 42px;
-
             border-radius: 40px;
             box-shadow: 0 15px 50px rgba(0,0,0,0.04);
             text-align: center;
@@ -44,6 +43,7 @@
         }
         
         .dog-sad {
+
             width: 100%;
             max-width: 200px;
             border-radius: 28px;
@@ -67,12 +67,11 @@
             gap: 14px;
             flex-wrap: wrap;
             margin-top: 4px;
-            min-height: 60px;
+            min-height: 70px;
             position: relative;
         }
         
         .btn-yes {
-
             background: #1a1a1a;
             color: white;
             border: none;
@@ -83,12 +82,14 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            z-index: 5;
         }
         
         .btn-yes:hover {
             background: #2d2d2d;
             transform: scale(1.04);
         }
+
         
         .btn-no {
             background: #f0e2e2;
@@ -99,15 +100,13 @@
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
             white-space: nowrap;
             box-shadow: 0 3px 15px rgba(200,150,150,0.06);
-            position: relative;
+            position: absolute;
             z-index: 10;
-        }
-        
-        .btn-no:hover {
-            background: #eddada;
+            transition: left 0.3s cubic-bezier(0.34, 1.4, 0.64, 1), 
+                        top 0.3s cubic-bezier(0.34, 1.4, 0.64, 1),
+                        transform 0.2s ease;
         }
         
         .scene-after {
@@ -118,7 +117,6 @@
             0% {
                 opacity: 0;
                 transform: scale(0.92) translateY(20px);
-
             }
             100% {
                 opacity: 1;
@@ -137,6 +135,7 @@
         
         .letter-box {
             text-align: left;
+
             background: #fcf8f8;
             padding: 28px 24px;
             border-radius: 30px;
@@ -164,7 +163,6 @@
             left: 30px;
             right: 30px;
             height: 1px;
-
             background: linear-gradient(to right, transparent, #e8dcdc, transparent);
             opacity: 0.5;
         }
@@ -183,6 +181,7 @@
         .letter-text .big {
             font-size: 1.3rem;
             font-weight: 700;
+
             font-style: normal;
             display: block;
             margin-bottom: 6px;
@@ -210,7 +209,6 @@
         }
         
         .heart-emoji {
-
             position: absolute;
             font-size: 2rem;
             animation: floatUp 3.8s linear forwards;
@@ -229,6 +227,7 @@
         }
         
         @media (max-width: 480px) {
+
             .card {
                 padding: 24px 16px 30px;
                 border-radius: 32px;
@@ -257,27 +256,24 @@
 
 <div class="card" id="mainCard">
 
-
-    <!-- ===== صفحه اول ===== -->
     <div class="scene-before" id="sceneBefore">
-        <img class="dog-sad" id="dogSad" src="sad-dog.png.jpg" alt="Sad dog">
+        <img class="dog-sad" id="dogSad" src="sad-dog.jpg" alt="Sad dog" onerror="this.src='https://media.tenor.com/6W3Bc6S-7LAAAAAM/crying-dog.gif'">
         <div class="question-text">Will you forgive me?</div>
-        <div class="btn-group">
+        <div class="btn-group" id="btnGroup">
             <button class="btn-yes" id="yesBtn">Yes, I forgive you</button>
             <button class="btn-no" id="noBtn">No, I won't forgive you!</button>
         </div>
     </div>
 
-    <!-- ===== صفحه دوم (نامه) ===== -->
     <div class="scene-after" id="sceneAfter">
-        <img class="dog-happy" id="dogHappy" src="happy-dog.png.png" alt="Happy dog">
+        <img class="dog-happy" id="dogHappy" src="happy-dog.png" alt="Happy dog" onerror="this.src='https://media.tenor.com/3W9VK9X9bVUAAAAj/happy-dog.gif'">
         <div class="letter-box">
             <div class="letter-text">
                 <span class="big">...Wait.</span>
 
                 YOU ACTUALLY FORGAVE ME?!
 
-                Hehehe... I knew my adorable little black cat had a soft spot for me. 😍
+                Hehehe... I knew my adorable little black cat had a soft spot for me. 
 
                 Come here, you. You don't get to click "I forgive you" and then run away.
                 That's illegal. Your punishment is accepting approximately 7,483 forehead kisses, unlimited cuddles, and me being even more obsessed with you
@@ -293,14 +289,13 @@
 
                 I've got a little black cat to adore, an unreasonable amount of love to give, and no interest in spending it on anyone but you.
 
-                Yeah. It's always been you. 😊
+                Yeah. It's always been you. 
 
-                <span class="sign">— Your Golden Retriever</span>
+                <span class="sign">- Your Golden Retriever</span>
             </div>
         </div>
     </div>
 </div>
-
 
 <div class="floating-hearts" id="heartContainer"></div>
 
@@ -309,48 +304,53 @@
     var sceneAfter = document.getElementById('sceneAfter');
     var yesBtn = document.getElementById('yesBtn');
     var noBtn = document.getElementById('noBtn');
+    var btnGroup = document.getElementById('btnGroup');
     var heartContainer = document.getElementById('heartContainer');
-    var isMoving = false;
     var moveTimeout = null;
 
     function moveNoButton() {
-        if (isMoving) return;
-        isMoving = true;
-
-        var card = document.getElementById('mainCard');
-        var cardRect = card.getBoundingClientRect();
+        var groupRect = btnGroup.getBoundingClientRect();
         var btnRect = noBtn.getBoundingClientRect();
+        
+        var padding = 10;
+        var maxX = groupRect.width - btnRect.width - padding;
 
-        var padding = 15;
-        var maxX = cardRect.width - btnRect.width - padding;
-        var maxY = cardRect.height - btnRect.height - padding;
-
-        if (maxX < 10) maxX = 30;
-        if (maxY < 10) maxY = 30;
-
+        var maxY = groupRect.height - btnRect.height - padding;
+        
+        if (maxX < 20) maxX = 40;
+        if (maxY < 20) maxY = 40;
+        
         var newX = Math.random() * maxX;
         var newY = Math.random() * maxY;
-
-        noBtn.style.transition = 'all 0.45s cubic-bezier(0.34, 1.4, 0.64, 1)';
-        noBtn.style.position = 'absolute';
+        
         noBtn.style.left = newX + 'px';
         noBtn.style.top = newY + 'px';
-        noBtn.style.transform = 'scale(0.88) rotate(-4deg)';
-
+        noBtn.style.transform = 'scale(0.85) rotate(-3deg)';
+        
         clearTimeout(moveTimeout);
         moveTimeout = setTimeout(function() {
             noBtn.style.transform = 'scale(1) rotate(0deg)';
-            isMoving = false;
-        }, 500);
+        }, 300);
     }
 
     noBtn.addEventListener('mouseover', function(e) {
-        if (e.target === noBtn) {
-
+        e.stopPropagation();
+        moveNoButton();
+    });
+    
+    noBtn.addEventListener('mousemove', function(e) {
+        var btnRect = noBtn.getBoundingClientRect();
+        var mouseX = e.clientX;
+        var mouseY = e.clientY;
+        var centerX = btnRect.left + btnRect.width / 2;
+        var centerY = btnRect.top + btnRect.height / 2;
+        var dist = Math.sqrt((mouseX - centerX) * (mouseX - centerX) + (mouseY - centerY) * (mouseY - centerY));
+        
+        if (dist < 80) {
             moveNoButton();
         }
     });
-
+    
     noBtn.addEventListener('touchstart', function(e) {
         e.preventDefault();
         moveNoButton();
@@ -359,6 +359,7 @@
     noBtn.addEventListener('click', function(e) {
         e.preventDefault();
         moveNoButton();
+
     });
 
     yesBtn.addEventListener('click', function() {
@@ -392,17 +393,23 @@
                 }, 5500);
             }, i * 45, i);
         }
-
     }
 
     window.addEventListener('load', function() {
         sceneAfter.style.display = 'none';
+        
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = '0px';
+        noBtn.style.top = '0px';
+        
         setTimeout(moveNoButton, 500);
+        
         setInterval(function() {
+
             if (sceneBefore.style.display !== 'none') {
                 moveNoButton();
             }
-        }, 2800);
+        }, 2200);
     });
 </script>
 
