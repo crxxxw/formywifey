@@ -11,7 +11,6 @@ body {
   margin: 0;
   font-family: 'Comic Neue', cursive;
   background: linear-gradient(135deg, #ffffff, #f2f2f2);
-  color: #111;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,18 +23,9 @@ body {
   max-width: 600px;
 }
 
-h1 {
-  font-size: 28px;
-}
+h1 { font-size: 28px; }
 
-.dog {
-  font-size: 80px;
-  margin-bottom: 10px;
-}
-
-.buttons {
-  margin-top: 30px;
-}
+.dog { font-size: 80px; }
 
 button {
   padding: 12px 18px;
@@ -43,32 +33,21 @@ button {
   border-radius: 12px;
   border: none;
   cursor: pointer;
-  font-size: 16px;
 }
 
-#yes {
-  background: black;
-  color: white;
-}
+#yes { background: black; color: white; }
 
 #no {
   background: #eee;
-  color: black;
   position: absolute;
 }
 
-.heart {
+.heart, .kiss {
   position: absolute;
-  color: hotpink;
-  font-size: 20px;
-  animation: float 4s linear forwards;
 }
 
-.kiss {
-  position: absolute;
-  font-size: 18px;
-  animation: fall 3s linear forwards;
-}
+.heart { color: hotpink; animation: float 4s linear forwards; }
+.kiss { animation: fall 3s linear forwards; }
 
 @keyframes float {
   from { transform: translateY(0); opacity: 1; }
@@ -84,86 +63,68 @@ button {
 
 <body>
 
-<div class="container">
+<div class="container" id="main">
   <div class="dog" id="dog">🐶😭</div>
   <h1>Will you forgive me?</h1>
 
-  <div class="buttons">
-    <button id="yes">Yes, I forgive you 😒</button>
-    <button id="no">No, I won't 😡</button>
-  </div>
+  <button id="yes">Yes 💖</button>
+  <button id="no">No 😡</button>
 </div>
 
 <script>
-const noBtn = document.getElementById("no");
-const yesBtn = document.getElementById("yes");
-const dog = document.getElementById("dog");
+window.onload = () => {
 
-// runaway button
-noBtn.addEventListener("mouseover", () => {
-  noBtn.style.left = Math.random() * window.innerWidth + "px";
-  noBtn.style.top = Math.random() * window.innerHeight + "px";
-});
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const dog = document.getElementById("dog");
 
-// YES click
-yesBtn.addEventListener("click", () => {
+  // No runaway
+  noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+  });
 
-  dog.innerText = "🐶🥰";
+  // YES click
+  yesBtn.addEventListener("click", () => {
 
-  document.body.innerHTML = 
-    <div style="font-family:'Comic Neue', cursive; text-align:center; padding:40px;">
-      
-      <h1>💖 Thank you... my little black cat 💖</h1>
-
-      <div style="max-width:650px; margin:auto; font-size:18px; line-height:1.8; text-align:left;">
-
+    document.getElementById("main").innerHTML = 
+      <h1>💖 Thank you 💖</h1>
+      <p style="max-width:600px; margin:auto; line-height:1.8;">
         ...Wait.<br><br>
 
         YOU ACTUALLY FORGAVE ME?!<br><br>
 
-        Hehehe... I knew my adorable little black cat had a soft spot for me. 😼<br><br>
+        Hehehe... I knew you'd soften 😼<br><br>
 
-        Come here, you. You don't get to click "I forgive you" and then run away. That's illegal. Your punishment is accepting approximately 7,483 forehead kisses, unlimited cuddles, and me being even more obsessed with you than I already am.<br><br>
+        You're my favorite person ♡
+      </p>
+    ;
 
-        Seriously though... thank you.<br><br>
+    setInterval(createHeart, 300);
+    setInterval(createKiss, 200);
+  });
 
-        Thank you for forgiving your menace. I know I can be a little... chaotic sometimes.<br><br>
+  function createHeart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = "💗";
+    h.style.left = Math.random() * window.innerWidth + "px";
+    h.style.top = "100vh";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 4000);
+  }
 
-        You're my favorite person; my safe place, my comfort, my gorgeous little black cat — the one I want to spoil, make laugh, protect, and keep close whether life is kind... or not.<br><br>
+  function createKiss() {
+    const k = document.createElement("div");
+    k.className = "kiss";
+    k.innerText = "💋";
+    k.style.left = Math.random() * window.innerWidth + "px";
+    k.style.top = "-20px";
+    document.body.appendChild(k);
+    setTimeout(() => k.remove(), 3000);
+  }
 
-        I've got a little black cat to adore, an unreasonable amount of love to give, and no interest in spending it on anyone but you.<br><br>
-
-        Yeah. It's always been you. ♡
-
-      </div>
-    </div>
-  ;
-
-  setInterval(createKiss, 150);
-  setInterval(createHeart, 300);
-});
-
-function createHeart() {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerText = "💗";
-  h.style.left = Math.random() * window.innerWidth + "px";
-  h.style.top = "100vh";
-  document.body.appendChild(h);
-
-  setTimeout(() => h.remove(), 4000);
-}
-
-function createKiss() {
-  const k = document.createElement("div");
-  k.className = "kiss";
-  k.innerText = "💋";
-  k.style.left = Math.random() * window.innerWidth + "px";
-  k.style.top = "-20px";
-  document.body.appendChild(k);
-
-  setTimeout(() => k.remove(), 3000);
-}
+};
 </script>
 
 </body>
