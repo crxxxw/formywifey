@@ -1,126 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Forgive Me?</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
 
 <style>
 body {
-  margin: 0;
-  font-family: 'Comic Neue', cursive;
-  background: linear-gradient(135deg, #fff, #f2f2f2);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  margin:0;
+  font-family:'Comic Neue', cursive;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#fff;
+  overflow:hidden;
 }
 
 .screen {
-  text-align: center;
-  max-width: 600px;
+  text-align:center;
 }
 
 button {
-  padding: 12px 18px;
-  margin: 10px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 16px;
+  padding:12px 18px;
+  margin:10px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
 }
 
-#yes {
-  background: black;
-  color: white;
-}
+#yes { background:black; color:white; }
 
 #no {
-  background: #eee;
-  position: absolute;
+  position:absolute;
+  background:#eee;
 }
 
 .heart, .kiss {
-  position: absolute;
-  font-size: 20px;
-}
-
-.heart { color: hotpink; animation: float 4s linear forwards; }
-.kiss { animation: fall 3s linear forwards; }
-
-@keyframes float {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-100vh); opacity: 0; }
-}
-
-@keyframes fall {
-  from { transform: translateY(-10vh); opacity: 1; }
-  to { transform: translateY(100vh); opacity: 0; }
+  position:absolute;
 }
 </style>
 </head>
 
 <body>
 
-<div class="screen" id="screen">
+<div class="screen" id="screen1">
   <h1>🐶 Will you forgive me?</h1>
-
   <button id="yes">Yes 💖</button>
   <button id="no">No 😡</button>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const screen = document.getElementById("screen1");
 
-  const yes = document.getElementById("yes");
-  const no = document.getElementById("no");
-  const screen = document.getElementById("screen");
-
-  // No runaway
-  no.addEventListener("mouseover", () => {
-    no.style.left = Math.random() * (window.innerWidth - 100) + "px";
-    no.style.top = Math.random() * (window.innerHeight - 50) + "px";
-  });
-
-  // YES
-  yes.addEventListener("click", () => {
-
-    screen.innerHTML = 
-      <h1>💖 You forgave me 💖</h1>
-      <p style="max-width:500px; margin:auto; line-height:1.8;">
-        ...Wait.<br><br>
-        YOU ACTUALLY DID IT?! 😼<br><br>
-        You're my favorite person ♡
-      </p>
-    ;
-
-    setInterval(createHeart, 250);
-    setInterval(createKiss, 180);
-  });
-
-  function createHeart() {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerText = "💗";
-    h.style.left = Math.random() * window.innerWidth + "px";
-    h.style.top = "100vh";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 4000);
-  }
-
-  function createKiss() {
-    const k = document.createElement("div");
-    k.className = "kiss";
-    k.innerText = "💋";
-    k.style.left = Math.random() * window.innerWidth + "px";
-    k.style.top = "-20px";
-    document.body.appendChild(k);
-    setTimeout(() => k.remove(), 3000);
-  }
-
+// FIXED runaway
+no.addEventListener("mouseover", () => {
+  no.style.left = Math.random()*(window.innerWidth-100)+"px";
+  no.style.top = Math.random()*(window.innerHeight-50)+"px";
 });
+
+// YES
+yes.onclick = () => {
+  screen.innerHTML = 
+    <h1>💖 You forgave me 💖</h1>
+    <p style="max-width:500px; line-height:1.8;">
+      ...Wait.<br><br>
+      YOU ACTUALLY DID IT?! 😼<br><br>
+      You're my favorite person ♡
+    </p>
+  ;
+};
 </script>
 
 </body>
