@@ -85,16 +85,13 @@ button {
 <body>
 
 <div class="container">
-
   <div class="dog" id="dog">🐶😭</div>
-
   <h1>Will you forgive me?</h1>
 
   <div class="buttons">
     <button id="yes">Yes, I forgive you 😒</button>
     <button id="no">No, I won't 😡</button>
   </div>
-
 </div>
 
 <script>
@@ -111,34 +108,35 @@ noBtn.addEventListener("mouseover", () => {
 // YES click
 yesBtn.addEventListener("click", () => {
 
-  // change dog
   dog.innerText = "🐶🥰";
 
   document.body.innerHTML = 
-    <h1 style="font-family: 'Comic Neue';">💖 Thank you... my little black cat 💖</h1>
-    <p style="max-width:600px; line-height:1.8; padding:20px; font-size:18px;">
-      (<div style="font-family:'Comic Neue', cursive; font-size:18px; line-height:1.8; max-width:650px; margin:auto; text-align:left;">
+    <div style="font-family:'Comic Neue', cursive; text-align:center; padding:40px;">
+      
+      <h1>💖 Thank you... my little black cat 💖</h1>
 
-...Wait.<br><br>
+      <div style="max-width:650px; margin:auto; font-size:18px; line-height:1.8; text-align:left;">
 
-YOU ACTUALLY FORGAVE ME?!<br><br>
+        ...Wait.<br><br>
 
-Hehehe... I knew my adorable little black cat had a soft spot for me. 😼<br><br>
+        YOU ACTUALLY FORGAVE ME?!<br><br>
 
-Come here, you. You don't get to click "I forgive you" and then run away. That's illegal. Your punishment is accepting approximately 7,483 forehead kisses, unlimited cuddles, and me being even more obsessed with you than I already am.<br><br>
+        Hehehe... I knew my adorable little black cat had a soft spot for me. 😼<br><br>
 
-Seriously though... thank you.<br><br>
+        Come here, you. You don't get to click "I forgive you" and then run away. That's illegal. Your punishment is accepting approximately 7,483 forehead kisses, unlimited cuddles, and me being even more obsessed with you than I already am.<br><br>
 
-Thank you for forgiving your menace. I know I can be a little... chaotic sometimes.<br><br>
+        Seriously though... thank you.<br><br>
 
-You're my favorite person; my safe place, my comfort, my gorgeous little black cat — the one I want to spoil, make laugh, protect, and keep close whether life is kind... or not.<br><br>
+        Thank you for forgiving your menace. I know I can be a little... chaotic sometimes.<br><br>
 
-I've got a little black cat to adore, an unreasonable amount of love to give, and no interest in spending it on anyone but you.<br><br>
+        You're my favorite person; my safe place, my comfort, my gorgeous little black cat — the one I want to spoil, make laugh, protect, and keep close whether life is kind... or not.<br><br>
 
-Yeah. It's always been you. ♡
+        I've got a little black cat to adore, an unreasonable amount of love to give, and no interest in spending it on anyone but you.<br><br>
 
-</div>)
-    </p>
+        Yeah. It's always been you. ♡
+
+      </div>
+    </div>
   ;
 
   setInterval(createKiss, 150);
