@@ -40,6 +40,8 @@ button {
 #no {
   background: #eee;
   position: absolute;
+  left: 55%;
+  top: 55%;
 }
 
 .heart, .kiss {
@@ -47,8 +49,14 @@ button {
   font-size: 20px;
 }
 
-.heart { color: hotpink; animation: float 4s linear forwards; }
-.kiss { animation: fall 3s linear forwards; }
+.heart {
+  color: hotpink;
+  animation: float 4s linear forwards;
+}
+
+.kiss {
+  animation: fall 3s linear forwards;
+}
 
 @keyframes float {
   from { transform: translateY(0); opacity: 1; }
@@ -72,72 +80,70 @@ button {
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const screen = document.getElementById("screen");
 
-  const yes = document.getElementById("yes");
-  const no = document.getElementById("no");
-  const screen = document.getElementById("screen");
-
-  // No runaway
-  no.addEventListener("mouseover", () => {
-    no.style.left = Math.random() * (window.innerWidth - 100) + "px";
-    no.style.top = Math.random() * (window.innerHeight - 50) + "px";
-  });
-
-  // YES click → your FULL text
-  yes.addEventListener("click", () => {
-
-    screen.innerHTML = 
-      <h1>💖 Thank you... my little black cat 💖</h1>
-
-      <div style="text-align:left; margin-top:20px; line-height:1.8; font-size:16px;">
-
-        ...Wait.<br><br>
-
-        YOU ACTUALLY FORGAVE ME?!<br><br>
-
-        Hehehe... I knew my adorable little black cat had a soft spot for me. 😼<br><br>
-
-        Come here, you. You don't get to click "I forgive you" and then run away. That's illegal. Your punishment is accepting approximately 7,483 forehead kisses, unlimited cuddles, and me being even more obsessed with you than I already am.<br><br>
-
-        Seriously though... thank you.<br><br>
-
-        Thank you for forgiving your menace. I know I can be a little... chaotic sometimes.<br><br>
-
-        You're my favorite person; my safe place, my comfort, my gorgeous little black cat — the one I want to spoil, make laugh, protect, and keep close whether life is kind... or not.<br><br>
-
-        I've got a little black cat to adore, an unreasonable amount of love to give, and no interest in spending it on anyone but you.<br><br>
-
-        Yeah. It's always been you. ♡
-
-      </div>
-    ;
-
-    setInterval(createHeart, 250);
-    setInterval(createKiss, 180);
-  });
-
-  function createHeart() {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerText = "💗";
-    h.style.left = Math.random() * window.innerWidth + "px";
-    h.style.top = "100vh";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 4000);
-  }
-
-  function createKiss() {
-    const k = document.createElement("div");
-    k.className = "kiss";
-    k.innerText = "💋";
-    k.style.left = Math.random() * window.innerWidth + "px";
-    k.style.top = "-20px";
-    document.body.appendChild(k);
-    setTimeout(() => k.remove(), 3000);
-  }
-
+// runaway button
+no.addEventListener("mouseover", () => {
+  const x = Math.random() * (window.innerWidth - 120);
+  const y = Math.random() * (window.innerHeight - 80);
+  no.style.left = x + "px";
+  no.style.top = y + "px";
 });
+
+// YES click
+yes.addEventListener("click", () => {
+
+  screen.innerHTML = 
+    <h1>💖 Thank you... my little black cat 💖</h1>
+
+    <div style="max-width:600px; margin:auto; text-align:left; line-height:1.8; font-size:16px;">
+
+      ...Wait.<br><br>
+
+      YOU ACTUALLY FORGAVE ME?!<br><br>
+
+      Hehehe... I knew my adorable little black cat had a soft spot for me. 😼<br><br>
+
+      Come here, you. You don't get to click "I forgive you" and then run away. That's illegal. Your punishment is accepting approximately 7,483 forehead kisses, unlimited cuddles, and me being even more obsessed with you than I already am.<br><br>
+
+      Seriously though... thank you.<br><br>
+
+      Thank you for forgiving your menace. I know I can be a little... chaotic sometimes.<br><br>
+
+      You're my favorite person; my safe place, my comfort, my gorgeous little black cat — the one I want to spoil, make laugh, protect, and keep close whether life is kind... or not.<br><br>
+
+      I've got a little black cat to adore, an unreasonable amount of love to give, and no interest in spending it on anyone but you.<br><br>
+
+      Yeah. It's always been you. ♡
+
+    </div>
+  ;
+
+  setInterval(createHeart, 250);
+  setInterval(createKiss, 180);
+});
+
+function createHeart() {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerText = "💗";
+  h.style.left = Math.random() * window.innerWidth + "px";
+  h.style.top = "100vh";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 4000);
+}
+
+function createKiss() {
+  const k = document.createElement("div");
+  k.className = "kiss";
+  k.innerText = "💋";
+  k.style.left = Math.random() * window.innerWidth + "px";
+  k.style.top = "-20px";
+  document.body.appendChild(k);
+  setTimeout(() => k.remove(), 3000);
+}
 </script>
 
 </body>
