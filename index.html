@@ -1,75 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Forgive Me?</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+
 <style>
 body {
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family: Arial;
-  overflow:hidden;
+  margin: 0;
+  font-family: 'Comic Neue', cursive;
+  background: linear-gradient(135deg, #ffffff, #f2f2f2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-#no {
-  position: fixed;
-  left: 55%;
-  top: 55%;
+#container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+button {
   padding: 12px 18px;
+  margin: 10px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 #yes {
-  padding: 12px 18px;
-  border: none;
-  border-radius: 10px;
   background: black;
   color: white;
 }
 
-.box {
-  text-align:center;
+#no {
+  background: #eee;
+  position: relative;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box" id="box">
-  <h1>🐶 Will you forgive me?</h1>
-  <button id="yes">Yes 💖</button>
-  <button id="no">No 😡</button>
+<div id="container">
+  <h1>Will you forgive me?</h1>
+
+  <button id="yes">Yes</button>
+  <button id="no">No</button>
 </div>
 
 <script>
-const yes = document.getElementById("yes");
-const no = document.getElementById("no");
-const box = document.getElementById("box");
-
-// FORCE TEST (very important)
-console.log("JS is working");
-
-no.onmouseenter = function () {
-  const x = Math.random() * (window.innerWidth - 120);
-  const y = Math.random() * (window.innerHeight - 60);
-  no.style.left = x + "px";
-  no.style.top = y + "px";
-};
-
-yes.onclick = function () {
-  box.innerHTML = 
-    <h1>💖 Thank you 💖</h1>
-    <p style="max-width:500px;margin:auto;line-height:1.8">
-      YOU forgave me 😼<br><br>
-      I owe you 7,483 forehead kisses.
-    </p>
-  ;
-};
 </script>
 
 </body>
