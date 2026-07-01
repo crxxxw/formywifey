@@ -1,78 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Forgive Me?</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
 body {
-  margin:0;
-  font-family:'Comic Neue', cursive;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#fff;
-  overflow:hidden;
+  margin: 0;
+  font-family: 'Comic Neue', cursive;
+  background: linear-gradient(135deg, #fff, #f2f2f2);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .screen {
-  text-align:center;
+  text-align: center;
+  max-width: 600px;
 }
 
 button {
-  padding:12px 18px;
-  margin:10px;
-  border-radius:12px;
-  border:none;
-  cursor:pointer;
+  padding: 12px 18px;
+  margin: 10px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-#yes { background:black; color:white; }
+#yes {
+  background: black;
+  color: white;
+}
 
 #no {
-  position:absolute;
-  background:#eee;
+  background: #eee;
+  position: absolute;
 }
 
 .heart, .kiss {
-  position:absolute;
+  position: absolute;
+  font-size: 20px;
+}
+
+.heart { color: hotpink; animation: float 4s linear forwards; }
+.kiss { animation: fall 3s linear forwards; }
+
+@keyframes float {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-100vh); opacity: 0; }
+}
+
+@keyframes fall {
+  from { transform: translateY(-10vh); opacity: 1; }
+  to { transform: translateY(100vh); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="screen" id="screen1">
+<div class="screen" id="screen">
   <h1>🐶 Will you forgive me?</h1>
+
   <button id="yes">Yes 💖</button>
   <button id="no">No 😡</button>
 </div>
 
 <script>
-const yes = document.getElementById("yes");
-const no = document.getElementById("no");
-const screen = document.getElementById("screen1");
+document.addEventListener("DOMContentLoaded", () => {
 
-// FIXED runaway
-no.addEventListener("mouseover", () => {
-  no.style.left = Math.random()*(window.innerWidth-100)+"px";
-  no.style.top = Math.random()*(window.innerHeight-50)+"px";
+  const yes = document.getElementById("yes");
+  const no = document.getElementById("no");
+  const screen = document.getElementById("screen");
+
+  // No runaway
+  no.addEventListener("mouseover", () => {
+    no.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    no.style.top = Math.random() * (window.innerHeight - 50) + "px";
+  });
+
+  // YES click → your FULL text
+  yes.addEventListener("click", () => {
+
+    screen.innerHTML = 
+      <h1>💖 Thank you... my little black cat 💖</h1>
+
+      <div style="text-align:left; margin-top:20px; line-height:1.8; font-size:16px;">
+
+        ...Wait.<br><br>
+
+        YOU ACTUALLY FORGAVE ME?!<br><br>
+
+        Hehehe... I knew my adorable little black cat had a soft spot for me. 😼<br><br>
+
+        Come here, you. You don't get to click "I forgive you" and then run away. That's illegal. Your punishment is accepting approximately 7,483 forehead kisses, unlimited cuddles, and me being even more obsessed with you than I already am.<br><br>
+
+        Seriously though... thank you.<br><br>
+
+        Thank you for forgiving your menace. I know I can be a little... chaotic sometimes.<br><br>
+
+        You're my favorite person; my safe place, my comfort, my gorgeous little black cat — the one I want to spoil, make laugh, protect, and keep close whether life is kind... or not.<br><br>
+
+        I've got a little black cat to adore, an unreasonable amount of love to give, and no interest in spending it on anyone but you.<br><br>
+
+        Yeah. It's always been you. ♡
+
+      </div>
+    ;
+
+    setInterval(createHeart, 250);
+    setInterval(createKiss, 180);
+  });
+
+  function createHeart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = "💗";
+    h.style.left = Math.random() * window.innerWidth + "px";
+    h.style.top = "100vh";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 4000);
+  }
+
+  function createKiss() {
+    const k = document.createElement("div");
+    k.className = "kiss";
+    k.innerText = "💋";
+    k.style.left = Math.random() * window.innerWidth + "px";
+    k.style.top = "-20px";
+    document.body.appendChild(k);
+    setTimeout(() => k.remove(), 3000);
+  }
+
 });
-
-// YES
-yes.onclick = () => {
-  screen.innerHTML = 
-    <h1>💖 You forgave me 💖</h1>
-    <p style="max-width:500px; line-height:1.8;">
-      ...Wait.<br><br>
-      YOU ACTUALLY DID IT?! 😼<br><br>
-      You're my favorite person ♡
-    </p>
-  ;
-};
 </script>
 
 </body>
