@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For my pretty wifey</title>
+    <title>For pretty wifey</title>
     <style>
         * {
             margin: 0;
@@ -65,8 +65,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 16px;
-            flex-wrap: nowrap;
+            gap: 20px;
+            flex-wrap: wrap;
             margin-top: 4px;
             min-height: 80px;
             position: relative;
@@ -84,13 +84,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 3px 15px rgba(0,0,0,0.06);
-            z-index: 5;
             font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
             position: relative;
-            flex-shrink: 0;
+            z-index: 2;
         }
-
         
+
         .btn-yes:hover {
             background: #2d2d2d;
             transform: scale(1.04);
@@ -109,12 +108,8 @@
             box-shadow: 0 3px 15px rgba(200,150,150,0.06);
             font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
             position: relative;
-            flex-shrink: 0;
+            z-index: 2;
             transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .btn-no:hover {
-            transform: scale(0.95) rotate(-3deg);
         }
         
         .scene-after {
@@ -135,12 +130,12 @@
         .dog-happy {
             width: 100%;
             max-width: 200px;
-
             border-radius: 28px;
             margin: 0 auto 12px;
             display: block;
             border: 2px solid #f0e8e8;
         }
+
         
         .letter-box {
             text-align: left;
@@ -181,12 +176,12 @@
             line-height: 2;
             color: #1a1a1a;
             white-space: pre-wrap;
-
             position: relative;
             z-index: 1;
         }
         
         .letter-text .big {
+
             font-size: 1.4rem;
             font-weight: 700;
             display: block;
@@ -227,11 +222,17 @@
                 transform: translateY(100vh) scale(0.2) rotate(0deg);
                 opacity: 1;
             }
-
             100% {
                 transform: translateY(-10vh) scale(1.1) rotate(15deg);
                 opacity: 0;
             }
+        }
+
+        
+        /* RUNAWAY MODE */
+        .btn-no-runaway {
+            position: absolute !important;
+            z-index: 10 !important;
         }
         
         @media (max-width: 480px) {
@@ -257,7 +258,7 @@
                 padding: 20px 16px;
             }
             .btn-group {
-                gap: 10px;
+                gap: 14px;
                 min-height: 65px;
             }
         }
@@ -271,8 +272,8 @@
         <img class="dog-sad" id="dogSad" src="sad-dog.jpg" alt="Sad dog" onerror="this.src='https://media.tenor.com/6W3Bc6S-7LAAAAAM/crying-dog.gif'">
         <div class="question-text">Will you forgive me?</div>
         <div class="btn-group" id="btnGroup">
-            <button class="btn-yes" id="yesBtn">Yes, I forgive you</button>
 
+            <button class="btn-yes" id="yesBtn">Yes, I forgive you</button>
             <button class="btn-no" id="noBtn">No, I won't forgive you!</button>
         </div>
     </div>
@@ -314,14 +315,15 @@
 <script>
     var sceneBefore = document.getElementById('sceneBefore');
     var sceneAfter = document.getElementById('sceneAfter');
-    var yesBtn = document.getElementById('yesBtn');
 
+    var yesBtn = document.getElementById('yesBtn');
     var noBtn = document.getElementById('noBtn');
     var btnGroup = document.getElementById('btnGroup');
     var heartContainer = document.getElementById('heartContainer');
     var moveTimeout = null;
     var moveInterval = null;
     var isMoving = false;
+    var originalPosition = null;
 
     function moveNoButton() {
         if (isMoving) return;
@@ -334,13 +336,13 @@
         var maxX = groupRect.width - btnRect.width - padding;
         var maxY = groupRect.height - btnRect.height - padding;
         
-        if (maxX < 20) maxX = 30;
-        if (maxY < 20) maxY = 30;
+        if (maxX < 30) maxX = 40;
+        if (maxY < 30) maxY = 40;
         
         var newX = Math.random() * maxX;
         var newY = Math.random() * maxY;
         
-        noBtn.style.position = 'absolute';
+        noBtn.classList.add('btn-no-runaway');
         noBtn.style.left = newX + 'px';
         noBtn.style.top = newY + 'px';
         noBtn.style.transform = 'scale(0.8) rotate(-5deg)';
@@ -353,15 +355,16 @@
     }
 
     function resetNoButtonPosition() {
+        noBtn.classList.remove('btn-no-runaway');
         noBtn.style.position = 'relative';
         noBtn.style.left = 'auto';
         noBtn.style.top = 'auto';
         noBtn.style.transform = 'scale(1) rotate(0deg)';
         isMoving = false;
+
     }
 
     noBtn.addEventListener('mouseover', function(e) {
-
         e.stopPropagation();
         moveNoButton();
     });
@@ -403,10 +406,10 @@
         }, 400);
         
         if (moveInterval) {
+
             clearInterval(moveInterval);
         }
         
-
         resetNoButtonPosition();
     });
 
