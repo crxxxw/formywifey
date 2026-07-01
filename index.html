@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>For Aasa ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Aasa</title>
     <style>
         * {
             margin: 0;
@@ -11,7 +11,7 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -21,16 +21,14 @@
         }
         .card {
             background: white;
-
             max-width: 600px;
             width: 100%;
             padding: 40px 30px;
-            border-radius: 60px 60px 40px 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+            border-radius: 60px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
             text-align: center;
             border: 1px solid #f0e6e6;
             position: relative;
-            transition: all 0.3s ease;
         }
         .dog-img {
             width: 100%;
@@ -38,25 +36,22 @@
             border-radius: 50px;
             margin: 10px auto 20px;
             display: block;
-            transition: all 0.5s ease;
-            box-shadow: 0 8px 20px rgba(255, 150, 180, 0.15);
         }
         h1 {
             font-size: 2rem;
-            font-weight: 600;
             color: #1a1a1a;
             margin: 16px 0 28px;
-            letter-spacing: -0.3px;
         }
         .btn-group {
+
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
             flex-wrap: wrap;
             margin-top: 10px;
-            position: relative;
             min-height: 80px;
+            position: relative;
         }
         .btn-yes {
             background: #1a1a1a;
@@ -65,15 +60,9 @@
             padding: 14px 36px;
             border-radius: 60px;
             font-size: 1.1rem;
-            font-weight: 600;
             cursor: pointer;
-
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 0 #00000030;
-            letter-spacing: 0.3px;
         }
         .btn-yes:hover {
-            transform: scale(1.04);
             background: #2a2a2a;
         }
         .btn-no {
@@ -83,12 +72,8 @@
             padding: 14px 30px;
             border-radius: 60px;
             font-size: 1.1rem;
-            font-weight: 600;
             cursor: pointer;
-            transition: 0.1s ease;
             position: relative;
-            box-shadow: 0 6px 0 #cc7a7a50;
-            white-space: nowrap;
         }
         .letter-section {
             display: none;
@@ -98,22 +83,18 @@
             padding: 30px 25px;
             border-radius: 40px;
             border: 1px solid #fce4e4;
-            position: relative;
         }
         .letter-text {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: Georgia, serif;
             font-size: 1rem;
             line-height: 1.9;
             color: #1e1e1e;
+
             white-space: pre-wrap;
             font-style: italic;
         }
-        .letter-text strong {
-            color: #d45a5a;
-        }
         .floating-hearts {
             position: fixed;
-
             top: 0;
             left: 0;
             width: 100%;
@@ -130,11 +111,11 @@
         }
         @keyframes floatUp {
             0% {
-                transform: translateY(100vh) scale(0.3) rotate(0deg);
+                transform: translateY(100vh) scale(0.3);
                 opacity: 1;
             }
             100% {
-                transform: translateY(-10vh) scale(1.1) rotate(20deg);
+                transform: translateY(-10vh) scale(1.1);
                 opacity: 0;
             }
         }
@@ -145,11 +126,7 @@
             h1 {
                 font-size: 1.6rem;
             }
-            .btn-group {
-                gap: 12px;
-            }
-            .btn-yes,
-            .btn-no {
+            .btn-yes, .btn-no {
                 padding: 12px 20px;
                 font-size: 1rem;
             }
@@ -158,103 +135,98 @@
 </head>
 <body>
 
-    <div class="card" id="mainCard">
+<div class="card" id="mainCard">
+    <img id="dogImage" class="dog-img" src="https://media.tenor.com/6W3Bc6S-7LAAAAAM/crying-dog.gif" alt="sad dog">
+    <h1>Will you forgive me?</h1>
+    <div class="btn-group">
+        <button class="btn-yes" id="yesBtn">Yes, I forgive you</button>
+        <button class="btn-no" id="noBtn">No, I won't!</button>
+    </div>
+    <div class="letter-section" id="letterSection">
+        <div class="letter-text">
+YOU ACTUALLY FORGAVE ME?!
 
-        <img id="dogImage" class="dog-img" src="https://media.tenor.com/6W3Bc6S-7LAAAAAM/crying-dog.gif" alt="Cute sad golden retriever" />
-        <h1>Will you forgive me? </h1>
-        <div class="btn-group">
-            <button class="btn-yes" id="yesBtn">Yes, I forgive you 😒</button>
-            <button class="btn-no" id="noBtn">No, I won't! 😡</button>
-        </div>
-        <div class="letter-section" id="letterSection">
-            <div class="letter-text">
-                YOU ACTUALLY FORGAVE ME?!
+Hehehe... I knew my adorable little black cat had a soft spot for me. 
 
-                Hehehe... I knew my adorable little black cat had a soft spot for me. 😼
+Come here, you. You don't get to click "I forgive you" and then run away. That's illegal. Your punishment is accepting approximately 7,483 forehead kisses, unlimited cuddles, and me being even more obsessed with you than I already am.
 
-                Come here, you. You don't get to click "I forgive you" and then run away. That's illegal. Your punishment is accepting approximately 7,483 forehead kisses, unlimited cuddles, and me being even more obsessed with you than I already am.
+Seriously though... thank you.
 
-                Seriously though... thank you.
+Thank you for forgiving your menace. I know I can be a little... chaotic sometimes.
 
-                Thank you for forgiving your menace. I know I can be a little... chaotic sometimes.
+You're my favorite person; my safe place, my comfort, my gorgeous little black cat, the one I want to spoil, make laugh, protect, and keep close whether life is kind... or not.
 
-                You're my favorite person; my safe place, my comfort, my gorgeous little black cat ,the one I want to spoil, make laugh, protect, and keep close whether life is kind... or not.
+I've got a little black cat to adore, an unreasonable amount of love to give, and no interest in spending it on anyone but you.
 
-                I've got a little black cat to adore, an unreasonable amount of love to give, and no interest in spending it on anyone but you.
-
-                Yeah. It's always been you. ♡
-            </div>
+Yeah. It's always been you.
         </div>
     </div>
+</div>
 
-    <div class="floating-hearts" id="heartContainer"></div>
+<div class="floating-hearts" id="heartContainer"></div>
 
-    <script>
-        const dog = document.getElementById('dogImage');
-        const yesBtn = document.getElementById('yesBtn');
-        const noBtn = document.getElementById('noBtn');
-        const letterSection = document.getElementById('letterSection');
-        const heartContainer = document.getElementById('heartContainer');
+<script>
+    var dog = document.getElementById('dogImage');
+    var yesBtn = document.getElementById('yesBtn');
+    var noBtn = document.getElementById('noBtn');
+    var letterSection = document.getElementById('letterSection');
+    var heartContainer = document.getElementById('heartContainer');
 
-        function moveNoButton() {
-            const cardRect = document.getElementById('mainCard').getBoundingClientRect();
-            const btnRect = noBtn.getBoundingClientRect();
-            const maxX = cardRect.width - btnRect.width - 20;
+    function moveNoButton() {
+        var cardRect = document.getElementById('mainCard').getBoundingClientRect();
+        var btnRect = noBtn.getBoundingClientRect();
 
-            const maxY = cardRect.height - btnRect.height - 20;
-            const newX = Math.random() * maxX;
-            const newY = Math.random() * maxY;
-            noBtn.style.position = 'absolute';
-            noBtn.style.left = newX + 'px';
-            noBtn.style.top = newY + 'px';
-            noBtn.style.transform = 'scale(0.95)';
-            setTimeout(() => { noBtn.style.transform = 'scale(1)'; }, 100);
+        var maxX = cardRect.width - btnRect.width - 20;
+        var maxY = cardRect.height - btnRect.height - 20;
+        var newX = Math.random() * maxX;
+        var newY = Math.random() * maxY;
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = newX + 'px';
+        noBtn.style.top = newY + 'px';
+    }
+
+    noBtn.addEventListener('mouseover', moveNoButton);
+    noBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        moveNoButton();
+    });
+
+    yesBtn.addEventListener('click', function() {
+        dog.src = 'https://media.tenor.com/3W9VK9X9bVUAAAAj/happy-dog.gif';
+        letterSection.style.display = 'block';
+        yesBtn.style.display = 'none';
+        noBtn.style.display = 'none';
+        launchHearts();
+    });
+
+    function launchHearts() {
+        var emojis = ['😘', '💗', '💖', '💕', '❤️', '😍', '🥰', '💋'];
+        for (var i = 0; i < 70; i++) {
+            setTimeout(function(index) {
+                var heart = document.createElement('div');
+                heart.className = 'heart-emoji';
+                heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = (1.5 + Math.random() * 3) + 'rem';
+                heart.style.animationDuration = (2.8 + Math.random() * 2) + 's';
+                heartContainer.appendChild(heart);
+                setTimeout(function() {
+                    heart.remove();
+                }, 5000);
+            }, i * 50, i);
         }
+    }
 
-        noBtn.addEventListener('mouseover', moveNoButton);
-        noBtn.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            moveNoButton();
-        });
+    noBtn.addEventListener('click', function(e) {
+        moveNoButton();
+        e.preventDefault();
+    });
 
-        yesBtn.addEventListener('click', function() {
-            dog.src = 'https://media.tenor.com/3W9VK9X9bVUAAAAj/happy-dog.gif';
-            letterSection.style.display = 'block';
-            yesBtn.style.display = 'none';
-            noBtn.style.display = 'none';
-            launchHearts();
-            document.getElementById('mainCard').style.transition = 'all 0.5s';
-            document.getElementById('mainCard').style.transform = 'scale(1.01)';
-        });
 
-        function launchHearts() {
-            const emojis = ['😘', '💗', '💖', '💕', '❤️', '😍', '🥰', '💋'];
-            for (let i = 0; i < 70; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.className = 'heart-emoji';
-                    heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                    heart.style.left = Math.random() * 100 + '%';
-                    heart.style.fontSize = (1.5 + Math.random() * 3) + 'rem';
-                    heart.style.animationDuration = (2.8 + Math.random() * 2) + 's';
-                    heartContainer.appendChild(heart);
-                    setTimeout(() => {
-                        heart.remove();
-                    }, 5000);
-                }, i * 50);
-            }
-        }
-
-        noBtn.addEventListener('click', function(e) {
-
-            moveNoButton();
-            e.preventDefault();
-        });
-
-        window.addEventListener('load', function() {
-            setTimeout(moveNoButton, 300);
-        });
-    </script>
+    window.addEventListener('load', function() {
+        setTimeout(moveNoButton, 300);
+    });
+</script>
 
 </body>
 </html>
